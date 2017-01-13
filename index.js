@@ -22,3 +22,4 @@ var sp3 = new SanPham('FLUSHED', `Ah this is awesome thanks so much for your kin
 var mangSanPham = [sp1, sp2, sp3];
 app.get('/', (req, res) => res.render('home', {mangSanPham}));
 app.get('/add', (req, res) => res.render('addProduct'));
+app.post('/xulythem', require('./controller/xulythem.js'));
