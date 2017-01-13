@@ -20,7 +20,8 @@ app.get('/xoa/:index', (req, res) => {
 });
 
 app.get('/sua/:index', (req, res) => {
-  res.render('update', {sanPham: mangSanPham[req.params.index]});
+  var {index} = req.params;
+  res.render('update', {sanPham: mangSanPham[index], index});
 });
 
 app.post('/xulysua', require('./controller/xulysua.js'));
