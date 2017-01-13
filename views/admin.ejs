@@ -22,25 +22,37 @@
           Hình ảnh
         </td>
         <td>
+          Video
+        </td>
+        <td>
           Quản lý
         </td>
       </tr>
-      <tr>
-        <td>
-          1
-        </td>
-        <td>
-          NodeJS
-        </td>
-        <td>
-          <img src="/images/background/1.png" width="200px"/>
-        </td>
-        <td>
-          <a href="#">Sửa</a>
-          <br>
-          <a href="#">Xoá</a>
-        </td>
-      </tr>
+      <%
+        mangSanPham.forEach(function(e, i){
+          %>
+          <tr>
+            <td>
+              <%= i + 1 %>
+            </td>
+            <td>
+              <%= e.title %>
+            </td>
+            <td>
+              <img src="/images/background/<%= e.image %>" width="200px"/>
+            </td>
+            <td>
+              <a href="https://vimeo.com/<%= e.video %>">video</a>
+            </td>
+            <td>
+              <a href="#">Sửa</a>
+              <br>
+              <a href="#">Xoá</a>
+            </td>
+          </tr>
+          <%
+        })
+      %>
     </table>
     <a href="/add">Thêm sản phẩm</a>
   </body>
