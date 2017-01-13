@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Update Product</title>
+  </head>
+  <body>
+    <form action="/xulysua" method="post" enctype="multipart/form-data">
+      <input type="text" name="title" placeholder="Title" value="<%= sanPham.title %>">
+      <br><br>
+      <input type="text" name="desc" placeholder="Description" value="<%= sanPham.desc %>">
+      <br><br>
+      <input type="number" name="video" placeholder="ID Vimeo" value="<%= sanPham.video %>">
+      <br><br>
+      <input type="file" name="image"/>
+      <br><br>
+      <input type="submit" value="Add">
+      <br><br>
+      <img src="/images/background/<%= sanPham.image %>"/>
+    </form>
+  </body>
+</html>

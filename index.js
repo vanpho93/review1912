@@ -12,4 +12,15 @@ app.get('/', (req, res) => res.render('home', {mangSanPham}));
 app.get('/add', (req, res) => res.render('addProduct'));
 app.post('/xulythem', require('./controller/xulythem.js'));
 
-app.get('/admin', (req, res) => res.render('admin', {mangSanPham}))
+app.get('/admin', (req, res) => res.render('admin', {mangSanPham}));
+app.get('/xoa/:index', (req, res) => {
+  var {index} = req.params;
+  mangSanPham.splice(index, 1);
+  res.redirect('/admin');
+});
+
+app.get('/sua/:index', (req, res) => {
+  res.render('update', {sanPham: mangSanPham[req.params.index]});
+});
+
+app.post('/xulysua', require('./controller/xulysua.js'));
