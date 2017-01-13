@@ -11,3 +11,5 @@ var mangSanPham = require('./mang.js');
 app.get('/', (req, res) => res.render('home', {mangSanPham}));
 app.get('/add', (req, res) => res.render('addProduct'));
 app.post('/xulythem', require('./controller/xulythem.js'));
+
+app.get('/admin', (req, res) => res.render('admin', {mangSanPham}))
