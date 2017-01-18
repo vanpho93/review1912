@@ -27,7 +27,7 @@ function query(sql, cb){
 // query('SELECT * FROM "SanPham"', result => console.log(result.rows));
 
 function selectAll(cb){
-  query('SELECT * FROM "SanPham"', cb);
+  query('SELECT * FROM "SanPham" ORDER BY id ASC', cb);
 }
 
 //Lay du lieu cua tat ca cac san pham

@@ -12,10 +12,12 @@ app.get('/', (req, res) => {
   selectAll(result => res.render('home', {mangSanPham: result.rows}))
 });
 
+app.get('/admin', (req, res) => {
+  selectAll(result => res.render('admin', {mangSanPham: result.rows}));
+});
+
 app.get('/add', (req, res) => res.render('addProduct'));
 app.post('/xulythem', require('./controller/xulythem.js'));
-
-app.get('/admin', (req, res) => res.render('admin', {mangSanPham}));
 app.get('/xoa/:index', (req, res) => {
   var {index} = req.params;
   mangSanPham.splice(index, 1);
