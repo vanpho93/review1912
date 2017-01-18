@@ -4,11 +4,14 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 app.use(express.static('public'));
 app.listen(3000, ()=> console.log('Server started'));
-
+var {selectAll} = require('./db.js');//require function
 var mangSanPham = require('./mang.js');
 //ide-terminal
 
-app.get('/', (req, res) => res.render('home', {mangSanPham}));
+app.get('/', (req, res) => {
+  selectAll(result => res.render('home', {mangSanPham: result.rows}))
+});
+
 app.get('/add', (req, res) => res.render('addProduct'));
 app.post('/xulythem', require('./controller/xulythem.js'));
 
