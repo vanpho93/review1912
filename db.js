@@ -32,12 +32,21 @@ function getProductById(id, cb){
   query('SELECT * FROM "SanPham" WHERE id = ' + id, cb);
 }
 
+function removeProduct(id, cb){
+  query('DELETE FROM "SanPham" WHERE id = ' + id, cb);
+}
+
+
 //Xoa 1 san pham
 
 //Them 1 san pham
 
 //Sua thong tin 1 san pham
 
-module.exports = {selectAll, getProductById};
+module.exports = {selectAll, getProductById, removeProduct};
 
 // getProductById(1, result => console.log(result.rows[0]));
+
+// removeProduct(1, (err, result) => {
+//   console.log(result);
+// })

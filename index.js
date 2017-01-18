@@ -5,7 +5,7 @@ app.set('views', './views');
 app.use(express.static('public'));
 app.listen(3000, ()=> console.log('Server started'));
 
-var {selectAll, getProductById} = require('./db.js');//require function
+var {selectAll, getProductById, removeProduct} = require('./db.js');//require function
 var mangSanPham = require('./mang.js');
 //ide-terminal
 
@@ -25,10 +25,14 @@ app.get('/admin', (req, res) => {
 
 app.get('/add', (req, res) => res.render('addProduct'));
 app.post('/xulythem', require('./controller/xulythem.js'));
-app.get('/xoa/:index', (req, res) => {
-  var {index} = req.params;
-  mangSanPham.splice(index, 1);
-  res.redirect('/admin');
+
+app.get('/xoa/:id', (req, res) => {
+  var {id} = req.params;
+  removeProduct(id, (err, result) => {
+    if(err) return res.send('Loi: ' + err);
+    if(result.rowCount === 1) return res.redirect('/admin');
+    res.send('Khong the xoa duoc');
+  });
 });
 
 app.get('/sua/:id', (req, res) => {
