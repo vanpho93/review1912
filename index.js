@@ -9,11 +9,11 @@ var mangSanPham = require('./mang.js');
 //ide-terminal
 
 app.get('/', (req, res) => {
-  selectAll(result => res.render('home', {mangSanPham: result.rows}))
+  selectAll((err, result) => res.render('home', {mangSanPham: result.rows}))
 });
 
 app.get('/admin', (req, res) => {
-  selectAll(result => res.render('admin', {mangSanPham: result.rows}));
+  selectAll((err, result) => res.render('admin', {mangSanPham: result.rows}));
 });
 
 app.get('/add', (req, res) => res.render('addProduct'));

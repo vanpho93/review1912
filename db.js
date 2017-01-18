@@ -16,23 +16,21 @@ function query(sql, cb){
   pool.connect((err, client, done) => {
     if(err) return console.log('Loi: ' + err);
     done();
-    client.query(sql,(err, result) => {
-      if(err) return console.log('Loi ' + err);
-      //console.log(result.rows);
-      cb(result);
-    });
+    client.query(sql, cb);
   });
 }
 
 // query('SELECT * FROM "SanPham"', result => console.log(result.rows));
 
+//Lay du lieu cua tat ca cac san pham
 function selectAll(cb){
   query('SELECT * FROM "SanPham" ORDER BY id ASC', cb);
 }
 
-//Lay du lieu cua tat ca cac san pham
-
 //Lay du lieu cua 1 san pham
+function getProductById(id, cb){
+  query('SELECT * FROM "SanPham" WHERE id = ' + id, cb);
+}
 
 //Xoa 1 san pham
 
@@ -40,4 +38,6 @@ function selectAll(cb){
 
 //Sua thong tin 1 san pham
 
-module.exports = {selectAll};
+module.exports = {selectAll, getProductById};
+
+// getProductById(1, result => console.log(result.rows[0]));
