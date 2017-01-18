@@ -4,13 +4,14 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 app.use(express.static('public'));
 app.listen(3000, ()=> console.log('Server started'));
-var {selectAll} = require('./db.js');//require function
+
+var {selectAll, getProductById} = require('./db.js');//require function
 var mangSanPham = require('./mang.js');
 //ide-terminal
 
 app.get('/', (req, res) => {
   selectAll((err, result) => {
-    if(err) return res.send('Loi: ' + err);
+    if(err) return res.send(err + '');
     res.render('home', {mangSanPham: result.rows})
   })
 });
@@ -30,9 +31,12 @@ app.get('/xoa/:index', (req, res) => {
   res.redirect('/admin');
 });
 
-app.get('/sua/:index', (req, res) => {
-  var {index} = req.params;
-  res.render('update', {sanPham: mangSanPham[index], index});
+app.get('/sua/:id', (req, res) => {
+  var {id} = req.params;
+  getProductById(id, (err, result) => {
+    if(err) return res.send('Loi: ' + err);
+    res.render('update', {sanPham: result.rows[0]});
+  });
 });
 
 app.post('/xulysua', require('./controller/xulysua.js'));
