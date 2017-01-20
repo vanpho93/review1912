@@ -43,13 +43,20 @@ function addProduct(title, desc, image, video, cb){
   query(sql, cb);
 }
 
+function updateProduct(title, desc, image, video, id, cb){
+  var sql = `UPDATE public."SanPham"
+	SET title='${title}', "desc"='${desc}', image='${image}', video='${video}'
+	WHERE id = ${id}`;
+  query(sql, cb);
+}
+
 //Xoa 1 san pham
 
 //Them 1 san pham
 
 //Sua thong tin 1 san pham
 
-module.exports = {selectAll, getProductById, removeProduct, addProduct};
+module.exports = {selectAll, getProductById, removeProduct, addProduct, updateProduct};
 
 // getProductById(1, result => console.log(result.rows[0]));
 
