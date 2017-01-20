@@ -1,8 +1,6 @@
 var {getUpload} = require('../upload.js');
-var SanPham = require('../SanPham.js');
-var mangSanPham = require('../mang.js');
-
 var upload = getUpload('image');
+var {addProduct} = require('../db.js');
 
 module.exports = (req, res) => {
   upload(req, res, err => {
@@ -10,8 +8,9 @@ module.exports = (req, res) => {
     var {title, desc, video} = req.body;
     var image = req.file.filename;
 
-    var sp = new SanPham(title, desc, image, video);
-    mangSanPham.push(sp);
-    res.send('Them thanh cong');
+    addProduct(title, desc, image, video, (err, result) => {
+      if(err) return res.send('Loi: ' + err);
+      res.redirect('/');
+    });
   })
 };

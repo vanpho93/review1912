@@ -12,5 +12,5 @@ app.get('/admin', require('./controller/getAdmin.js'));
 app.get('/add', (req, res) => res.render('addProduct'));
 app.post('/xulythem', require('./controller/xulythem.js'));
 app.get('/xoa/:id', require('./controller/xulyxoa.js'));
-app.get('/sua/:id', require('./controller/getProductById.js'));
+app.get('/sua/:id', require('./controller/sua.js'));
 app.post('/xulysua', require('./controller/xulysua.js'));

@@ -36,6 +36,12 @@ function removeProduct(id, cb){
   query('DELETE FROM "SanPham" WHERE id = ' + id, cb);
 }
 
+function addProduct(title, desc, image, video, cb){
+  var sql = `INSERT INTO public."SanPham" (title, "desc", image, video)
+	VALUES ('${title}', '${desc}', '${image}', '${video}')`;
+  console.log(sql);
+  query(sql, cb);
+}
 
 //Xoa 1 san pham
 
@@ -43,7 +49,7 @@ function removeProduct(id, cb){
 
 //Sua thong tin 1 san pham
 
-module.exports = {selectAll, getProductById, removeProduct};
+module.exports = {selectAll, getProductById, removeProduct, addProduct};
 
 // getProductById(1, result => console.log(result.rows[0]));
 
